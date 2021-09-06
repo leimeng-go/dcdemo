@@ -1,0 +1,29 @@
+version: '3.7'
+networks:
+  monitor:
+    driver: bridge
+
+services: 
+  prometheus_mmsh:
+    image: prom/prometheus
+    container_name: prometheus
+    hostname: prometheus
+    restart: always
+    volumes: 
+      - ./config/prometheus.yaml:/etc/prometheus/prometheus.yaml
+    networks:
+      - monitor
+    ports:
+      - "9090:9090"
+    user: root
+  
+  grafana_mmsh:
+    image: grafana/grafana
+    container_name: grafana
+    hostname: grafana
+    restart: always
+    networks: 
+      - monitor
+    ports:
+      - "3000:3000"
+    user: root       

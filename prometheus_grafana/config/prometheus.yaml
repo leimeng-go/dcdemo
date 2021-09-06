@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 10s
+  evaluation_interval: 10s
+scrape_configs:
+  - job_name: 'test-agent-node1' 
+    static_configs:
+      - tragets: ["192.168.0.147:9090"] 
+  - job_name: 'mongo_exporter'
+    static_configs:
+      - tragets: ["192.168.0.147:9216"]      
